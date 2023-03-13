@@ -4,10 +4,3 @@
 imports:
     - { resource: '@SyliusPriceHistoryPlugin/config/events.yaml' }
     - { resource: '@SyliusPriceHistoryPlugin/config/grids/*' }
-        
-framework:
-    messenger:
-        buses:
-            sylius.no_transaction_command_bus:
-                middleware:
-                    - 'validation'
