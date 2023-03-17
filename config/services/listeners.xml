@@ -23,6 +23,7 @@
 
         <service id="Sylius\PriceHistoryPlugin\Infrastructure\EntityObserver\ProcessLowestPriceOnCheckingPeriodChangeObserver">
             <argument type="service" id="sylius_price_history.repository.channel_pricing_log_entry" />
+            <argument type="service" id="sylius.repository.channel_pricing" />
             <tag name="sylius_price_history.entity_observer" />
         </service>
 

@@ -15,19 +15,22 @@ namespace Sylius\PriceHistoryPlugin\Infrastructure\EntityObserver;
 
 use Sylius\PriceHistoryPlugin\Domain\Model\ChannelInterface;
 use Sylius\PriceHistoryPlugin\Infrastructure\Doctrine\ORM\ChannelPricingLogEntryRepositoryInterface;
+use Sylius\PriceHistoryPlugin\Infrastructure\Doctrine\ORM\ChannelPricingRepositoryInterface;
 use Webmozart\Assert\Assert;
 
 final class ProcessLowestPriceOnCheckingPeriodChangeObserver implements EntityObserverInterface
 {
-    public function __construct(private ChannelPricingLogEntryRepositoryInterface $channelPricingLogEntryRepository)
-    {
+    public function __construct(
+        private ChannelPricingLogEntryRepositoryInterface $channelPricingLogEntryRepository,
+        private ChannelPricingRepositoryInterface $pricingRepository,
+    ) {
     }
 
     public function onChange(object $entity): void
     {
         Assert::isInstanceOf($entity, ChannelInterface::class);
 
-        $this->channelPricingLogEntryRepository->bulkUpdateLowestPricesBeforeDiscount($entity);
+        $this->pricingRepository->bulkUpdateLowestPricesInChannel($entity);
     }
 
     public function supports(object $entity): bool

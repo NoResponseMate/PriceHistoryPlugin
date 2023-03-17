@@ -4,3 +4,9 @@
 imports:
     - { resource: '@SyliusPriceHistoryPlugin/config/events.yaml' }
     - { resource: '@SyliusPriceHistoryPlugin/config/grids/*' }
+
+sylius_core:
+    resources:
+        channel_pricing:
+            classes:
+                repository: Sylius\PriceHistoryPlugin\Infrastructure\Doctrine\ORM\ChannelPricingRepository
