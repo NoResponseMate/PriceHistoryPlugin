@@ -34,12 +34,8 @@
             </options>
         </field>
 
-        <one-to-one field="channel" target-entity="Sylius\Component\Core\Model\ChannelInterface">
-            <join-column name="channel_id" />
-        </one-to-one>
-
         <many-to-many field="taxonsExcludedFromShowingLowestPrice" target-entity="Sylius\Component\Taxonomy\Model\TaxonInterface">
-            <join-table name="sylius_price_history_channel_excluded_taxons">
+            <join-table name="sylius_channel_price_history_config_excluded_taxons">
                 <join-columns>
                     <join-column name="channel_id" nullable="false" on-delete="CASCADE" />
                 </join-columns>
